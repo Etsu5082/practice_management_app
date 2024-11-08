@@ -1,0 +1,21 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}練習日一覧{% endblock %}
+
+{% block content %}
+<h1>練習日一覧</h1>
+<ul>
+    {% for practice in practices %}
+    <li>
+        {{ practice.date }} (定員: {{ practice.max_participants }})
+        {% if user.is_authenticated %}
+            <a href="{% url 'main_app:register_practice' practice.pk %}">参加登録</a>
+        {% else %}
+            <a href="{% url 'login' %}">ログインして参加登録</a>
+        {% endif %}
+    </li>
+    {% empty %}
+    <li>現在募集中の練習日はありません。</li>
+    {% endfor %}
+</ul>
+{% endblock %}

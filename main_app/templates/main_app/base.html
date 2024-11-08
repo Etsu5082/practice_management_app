@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}練習管理システム{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        {% if user.is_authenticated %}
+            <p>ようこそ、{{ user.username }}さん</p>
+            <a href="{% url 'logout' %}">ログアウト</a>
+        {% else %}
+            <a href="{% url 'login' %}">ログイン</a>
+        {% endif %}
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
